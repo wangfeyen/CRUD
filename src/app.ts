@@ -8,6 +8,6 @@ app.use(express.json());
 app.post ("/users",cadastrarUsuario);
 app.get("/users",listarUsuarios);
 app.patch("/users/:user_id",atualizarUsuarios);
-app.delete("/users",deletarUsuarios);
+app.delete("/users/:user_id",deletarUsuarios);
 
 export default app;

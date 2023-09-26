@@ -15,6 +15,7 @@ export const cadastrarUsuario =async(req:Request,res:Response)=>{
         await AppDataSource.getTreeRepository(User).save(user);
         return res.status(201).json({ok:true})
     } catch (error) {
+        console.log(error)
         return res
         .status(500)
         .json({ok:false,message:"Erro ao cadastrar o usuário"})
@@ -62,9 +63,9 @@ export const atualizarUsuarios = async(req:Request,res:Response)=>{
     }
 }
 export const deletarUsuarios = async(req:Request,res:Response)=>{
-    const id=req.params.user_id;
+    const id=parseInt(req.params.user_id);
     try {
-        const user = await AppDataSource.getRepository(User).findOne({where:{id:parseInt(id)}});
+        const user = await AppDataSource.getRepository(User).findOne({where:{id:id}});
         if(!user){
             return res.status(404).json({ok:false,message:"Não existe um usuário com esse ID"})
         }
